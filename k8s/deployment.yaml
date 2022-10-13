@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-kubernetes-component
+  labels:
+    backstage.io/kubernetes-id: dice-roller
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      backstage.io/kubernetes-id: dice-roller
+      app.kubernetes.io/part-of: dice-roller
+
+  template:
+    metadata:
+      labels:
+        backstage.io/kubernetes-id: dice-roller
+        app.kubernetes.io/part-of: dice-roller
+    spec:
+      containers:
+      - name: ubuntu
+        image: ubuntu
+        command: 
+        - /bin/sh
+        args:
+        - -c
+        - "tail -f /dev/null"
